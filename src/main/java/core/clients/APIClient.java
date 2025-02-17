@@ -13,6 +13,7 @@ public class APIClient {
     }
 
     private String determineBaseurl() {
+
         String environment = System.getProperty("env", "test");
         String configFileName = "application-" + environment + ".properties";
 
