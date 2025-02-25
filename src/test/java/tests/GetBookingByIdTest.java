@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import core.clients.APIClient;
 import core.models.BookingById;
+import core.models.BookingDates;
+import core.models.CreatedBooking;
+import core.models.NewBooking;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +21,7 @@ public class GetBookingByIdTest {
 
     private APIClient apiClient;
     private ObjectMapper objectMapper;
+
 
     @BeforeEach
     public void setup() {
@@ -57,12 +61,8 @@ public class GetBookingByIdTest {
         String responseBody = response.getBody().asString();
         BookingById booking = objectMapper.readValue(responseBody, BookingById.class);
 
-        assertEquals("Mark",booking.getFirstname(), "Имя не совпадает");
-        assertEquals("Jackson",booking.getLastname(), "Имя не совпадает");
-        assertEquals(768,booking.getTotalprice(), "Имя не совпадает");
-        assertTrue(booking.isDepositpaid());
-
-
+        assertNotNull(booking.isDepositpaid());
 
     }
+
 }

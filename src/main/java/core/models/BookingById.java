@@ -9,7 +9,7 @@ public class BookingById {
     public String lastname;
     public int totalprice;
     public boolean depositpaid;
-    public Bookindates bookindates;
+    public BookingDates bookindates;
     public String additionalneeds;
 
 
@@ -45,11 +45,11 @@ public class BookingById {
         this.depositpaid = depositpaid;
     }
 
-    public Bookindates getBookindates() {
+    public BookingDates getBookindates() {
         return bookindates;
     }
 
-    public void setBookindates(Bookindates bookindates) {
+    public void setBookindates(BookingDates bookindates) {
         this.bookindates = bookindates;
     }
 
