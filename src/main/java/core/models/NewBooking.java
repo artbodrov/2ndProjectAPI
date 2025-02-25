@@ -3,15 +3,14 @@ package core.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BookingById {
+public class NewBooking {
 
-    public String firstname;
-    public String lastname;
-    public int totalprice;
-    public boolean depositpaid;
-    public BookingDates bookindates;
-    public String additionalneeds;
-
+    private String firstname;
+    private String lastname;
+    private int totalprice;
+    private boolean depositpaid;
+    private BookingDates bookingdates;
+    private String additionalneeds;
 
     public String getFirstname() {
         return firstname;
@@ -45,12 +44,12 @@ public class BookingById {
         this.depositpaid = depositpaid;
     }
 
-    public BookingDates getBookindates() {
-        return bookindates;
+    public BookingDates getBookingdates() {
+        return bookingdates;
     }
 
-    public void setBookindates(BookingDates bookindates) {
-        this.bookindates = bookindates;
+    public void setBookingdates(BookingDates bookingdates) {
+        this.bookingdates = bookingdates;
     }
 
     public String getAdditionalneeds() {

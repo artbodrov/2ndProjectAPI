@@ -74,14 +74,14 @@ public class APIClient {
                 .when()
                 .get(ApiEndpoints.BOOKING.getPath() + "/" + p)
                 .then()
-                .statusCode(200)
+                .log().all()
                 .extract()
                 .response();
     }
 
     public void createToken(String username, String password) {
 
-        String requestBody = String.format("{ \"username\": \"%s\",\"password\": \"%s\" }", username, password);
+        String requestBody = String.format("{ \"username\": \"%s\", \"password\": \"%s\" }", username, password);
 
         Response response = getRequestSpec()
                 .body(requestBody)
@@ -93,6 +93,7 @@ public class APIClient {
                 .response();
 
         token = response.jsonPath().getString("token");
+
     }
 
     private Filter addAuthTokenFilter() {
@@ -111,10 +112,51 @@ public class APIClient {
         return getRequestSpec()
                 .pathParam("id", bookingId)
                 .when()
+                .log().all()
                 .delete(ApiEndpoints.BOOKING.getPath() + "/{id}")
                 .then()
                 .log().all()
                 .statusCode(201)
+                .extract()
+                .response();
+
+    }
+
+    public Response createBooking(String newBooking) {
+        return getRequestSpec()
+                .body(newBooking)
+                .log().all()
+                .when()
+                .post(ApiEndpoints.BOOKING.getPath())
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    public Response updatePutBooking(String putBooking, int bookingId) {
+        return getRequestSpec()
+                .pathParam("id", bookingId)
+                .body(putBooking)
+                .log().all()
+                .when()
+                .put(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .response();
+    }
+
+    public Response updatePatchBooking(String patchBooking, int bookingId) {
+        return getRequestSpec()
+                .pathParam("id", bookingId)
+                .body(patchBooking)
+                .log().all()
+                .when()
+                .patch(ApiEndpoints.BOOKING.getPath() + "/{id}")
+                .then()
+                .log().all()
                 .extract()
                 .response();
     }
